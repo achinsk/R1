@@ -1,10 +1,14 @@
-let title = "Hello";
-let screens = 5;
+const title = "Project_Lesson2";
+const screens = "Простые, Сложные, Интерактивные";
 let screenPrice = 100;
-let rollback =1;
+let rollback = 1;
 const fullPrice = 500;
 const adaptive = true;
 
-alert("Hello");
-console.log("ErrorMessage");
+console.log(typeof(title),typeof(fullPrice),typeof(adaptive));
+console.log(screens.length);
 
+console.log(`Стоимость верстки экранов ${screenPrice} рублей`);
+console.log(`Стоимость разработки сайта ${fullPrice} рублей`);
+console.log(screens.toLowerCase().split(''));
+console.log(fullPrice * (rollback/100));
