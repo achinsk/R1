@@ -1,7 +1,7 @@
 const title = "Project_Lesson2";
 const screens = "Простые, Сложные, Интерактивные";
-let screenPrice = 100;
-let rollback = 1;
+const screenPrice = 100;
+const rollback = 1;
 const fullPrice = 500;
 const adaptive = true;
 
