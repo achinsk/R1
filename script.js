@@ -12,3 +12,5 @@ console.log(`Стоимость верстки экранов ${screenPrice} р�
 console.log(`Стоимость разработки сайта ${fullPrice} рублей`);
 console.log(screens.toLowerCase().split(''));
 console.log(fullPrice * (rollback/100));
+
+
