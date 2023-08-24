@@ -1,45 +1,57 @@
 'use strict';
 
-let title = prompt("Как называется ваш проект?");
-const screens = prompt("Какие типы экранов нужно разработать?");
-const screenPrice = parseInt(prompt("Сколько будет стоить данная работа?"));
+let title, screens, screenPrice, adaptive; 
 const rollback = 10;
-const adaptive = (prompt("Нужен ли адаптив на сайте?") == "true" ? true: false);
 
-const additionalService1 = prompt("Какой дополнительный тип услуги нужен?");
-const additionalServicePrice1 = parseInt(prompt("Сколько это будет стоить?"));
-const additionalService2 = prompt("Какой дополнительный тип услуги нужен?");
-const additionalServicePrice2 = parseInt(prompt("Сколько это будет стоить?"));
-
-// 1. Объявить функцию getAllServicePrices. 
-// Функция возвращает сумму всех дополнительных услуг. 
-// Результат сохраняем в переменную allServicePrices. Тип - function expression 
-const x = function getAllServicePrices(a, b) {
-    return (a + b);
+const isNumber = function (num) {    
+    return !isNaN(parseFloat(num)) && isFinite(num);
 }
-const allServicePrices = x(additionalServicePrice1, additionalServicePrice2);
+const asking = function () {
+    title = prompt("Как называется ваш проект?");
+    screens = prompt("Какие типы экранов нужно разработать?");
+    
+    do {
+        screenPrice = prompt("Сколько будет стоить данная работа?");
+    } while (!isNumber(screenPrice));
+    
+    // Строка добавлена, иначе typeOf(screenPrice) = string
+    screenPrice = parseFloat(screenPrice);
 
-// 2. Объявить функцию getFullPrice. Тип - function declaration
-function getFullPrice() {
-    return (screenPrice + allServicePrices);
+    adaptive = (prompt("Нужен ли адаптив на сайте?") == "true" ? true: false);
 }
-const fullPrice = getFullPrice();
 
-// 3. Объявить функцию getTitle
-// MY COMMENT -> и вызываю функцию чтобы обновить title
-function getTitle() {
-    return ((title.trim())[0].toUpperCase() + (title.trim().slice(1).toLowerCase()));
+const getAllServicePrices = function () {
+    let sum = 0;
+    let x;
+    
+    for (let i = 0; i < 2; i++) {
+        if (i === 0) {
+            const additionalService1 = prompt("Какой дополнительный тип услуги нужен?");
+        } else if (i === 1) {
+            const additionalService2 = prompt("Какой дополнительный тип услуги нужен?");
+        }
+        do {
+            x = prompt("Сколько это будет стоить?");
+        } while (!isNumber(x));
+        sum += parseFloat(x);                
+    }
+    return sum;
 }
-title = getTitle();
-
-// 4. Объявить функцию getServicePercentPrices
-function getServicePercentPrices() {
-    return (Math.ceil(fullPrice - (fullPrice * (rollback/100))));
-}
-const servicePercentPrice = getServicePercentPrices();
 
 const showTypeOf = function (variable) {
     console.log(variable, typeof variable);
+}
+
+function getFullPrice() {
+    return (screenPrice + allServicePrices);
+}
+
+function getTitle() {
+    return ((title.trim())[0].toUpperCase() + (title.trim().slice(1).toLowerCase()));
+}
+
+function getServicePercentPrices() {
+    return (Math.ceil(fullPrice - (fullPrice * (rollback/100))));
 }
 
 const getRollbackMessage = function (price) {
@@ -54,16 +66,16 @@ const getRollbackMessage = function (price) {
     }
 }
 
-// 1. вызовы функции showTypeOf
+asking();
+const allServicePrices = getAllServicePrices();
+const fullPrice = getFullPrice();
+const servicePercentPrice = getServicePercentPrices();
+title = getTitle();
+
 showTypeOf(title);
 showTypeOf(screenPrice);
 showTypeOf(adaptive);
 
-// 2. вывод строки с типами экранов для разработки screens
 console.log(screens);
-
-// 3.сообщение о скидке пользователю (вызовы функции getRollbackMessage)
 console.log(getRollbackMessage(fullPrice));
-
-// 4. стоимость за вычетом процента отката посреднику (вызовы функции getServicePercentPrices)
 console.log(servicePercentPrice);
