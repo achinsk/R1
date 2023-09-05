@@ -133,6 +133,7 @@ const appData = {
     },
 
     start: function() {
+        appData.isCalculateScreensOk = true;
         appData.addScreens();
         if (!appData.isCalculateScreensOk) return false;
         
