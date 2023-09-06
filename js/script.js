@@ -60,7 +60,6 @@ const appData = {
     },
 
     addScreens: function() {
-  //      this.screens = [];
         screensNode = document.querySelectorAll('.screen');
 
         screensNode.forEach(((screen, index) => {
@@ -175,7 +174,6 @@ const appData = {
         
         document.getElementById('cms-open').checked = false
 
-
         this.screens = [];            
         this.screenPrice = this.servicePricesPercent = this.servicePricesNumber = this.fullPrice = this.servicePercentPrice = this.screensCount = 0;
         this.additionalServicesPercent = {};
@@ -183,7 +181,6 @@ const appData = {
         this.isCalculateScreensOk = true;
         
         this.showResult();
-
     },
 
     featureBlockButtonCalculate: function() {
@@ -194,9 +191,6 @@ const appData = {
             screen.querySelector('select').setAttribute("disabled", "");
             screen.querySelector('input').setAttribute("disabled", "");
         });
-
-
-
     },
 };
 
