@@ -16,14 +16,6 @@ let screensNode = document.querySelectorAll('.screen');
 const range = document.querySelector('input[type=range]');
 const span = document.getElementsByClassName('range-value');
 
-const logger = function (event) {
-    span[0].textContent = event.target.value + '%';
-    this.rollback = +event.target.value;
-    if (this.fullPrice !==0 ) {
-        fullPriceIncludRollBack.value = (Math.ceil(this.fullPrice - (this.fullPrice * (this.rollback/100))));
-    }
-};
-
 const appData = {
     title: '',
     screens: [], 
@@ -43,8 +35,16 @@ const appData = {
         this.addTitle();
         buttonCalculate.addEventListener('click', this.start.bind(this));
         buttonPlus.addEventListener('click', this.addScreenBlock);
-        range.addEventListener('change', logger.bind(this));
+        range.addEventListener('change', this.logger.bind(this));
 
+    },
+
+    logger: function (event) {
+            span[0].textContent = event.target.value + '%';
+            this.rollback = +event.target.value;
+            if (this.fullPrice !==0 ) {
+                fullPriceIncludRollBack.value = (Math.ceil(this.fullPrice - (this.fullPrice * (this.rollback/100))));
+            }
     },
 
     addTitle: function() {
